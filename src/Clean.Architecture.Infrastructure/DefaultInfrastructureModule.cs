@@ -13,8 +13,8 @@ namespace Clean.Architecture.Infrastructure;
 
 public class DefaultInfrastructureModule : Module
 {
-  private readonly bool _isDevelopment = false;
-  private readonly List<Assembly> _assemblies = new List<Assembly>();
+  private readonly bool _isDevelopment;
+  private readonly List<Assembly> _assemblies = new ();
 
   public DefaultInfrastructureModule(bool isDevelopment, Assembly? callingAssembly = null)
   {
@@ -47,7 +47,7 @@ public class DefaultInfrastructureModule : Module
     builder.RegisterGeneric(typeof(EfRepository<>))
       .As(typeof(IRepository<>))
       .As(typeof(IReadRepository<>))
-      .InstancePerLifetimeScope();
+      .InstancePerDependency();
 
     builder
       .RegisterType<Mediator>()

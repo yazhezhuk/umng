@@ -1,9 +1,10 @@
 ﻿using Ardalis.GuardClauses;
+using Clean.Architecture.Core.ProjectAggregate;
 using Clean.Architecture.Core.ProjectAggregate.Events;
 using Clean.Architecture.SharedKernel;
 using Clean.Architecture.SharedKernel.Interfaces;
 
-namespace Clean.Architecture.Core.ProjectAggregate;
+namespace Clean.Architecture.Core.Entities;
 
 public class Project : EntityBase, IAggregateRoot
 {

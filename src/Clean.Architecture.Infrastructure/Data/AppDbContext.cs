@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Clean.Architecture.Core.Entities;
 using Clean.Architecture.Core.ProjectAggregate;
 using Clean.Architecture.SharedKernel;
 using Clean.Architecture.SharedKernel.Interfaces;
@@ -7,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Clean.Architecture.Infrastructure.Data;
 
-public class AppDbContext : IdentityDbContext
+public class AppDbContext : DbContext
 {
   private readonly IDomainEventDispatcher? _dispatcher;
 
@@ -18,8 +19,11 @@ public class AppDbContext : IdentityDbContext
     _dispatcher = dispatcher;
   }
 
-  public DbSet<ToDoItem> ToDoItems => Set<ToDoItem>();
-  public DbSet<Project> Projects => Set<Project>();
+  public DbSet<Title> Titles { get; set; }
+  public DbSet<User> Users { get; set; }
+  public DbSet<Review> Reviews { get; set; }
+  public DbSet<Studio> Studios { get; set; } 
+  
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
@@ -27,9 +31,10 @@ public class AppDbContext : IdentityDbContext
     modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
   }
 
-  public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+  public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
   {
-    int result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+    var result = await base.SaveChangesAsync(cancellationToken)
+      .ConfigureAwait(false);
 
     // ignore events if no dispatcher provided
     if (_dispatcher == null) return result;

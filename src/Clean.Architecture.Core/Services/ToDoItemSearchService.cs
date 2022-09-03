@@ -1,4 +1,5 @@
 ﻿using Ardalis.Result;
+using Clean.Architecture.Core.Entities;
 using Clean.Architecture.Core.Interfaces;
 using Clean.Architecture.Core.ProjectAggregate;
 using Clean.Architecture.Core.ProjectAggregate.Specifications;

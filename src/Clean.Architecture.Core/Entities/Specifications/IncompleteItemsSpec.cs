@@ -2,7 +2,7 @@
 
 namespace Clean.Architecture.Core.ProjectAggregate.Specifications;
 
-public class IncompleteItemsSpec : Specification<ToDoItem>
+public sealed class IncompleteItemsSpec : Specification<ToDoItem>
 {
   public IncompleteItemsSpec()
   {

@@ -1,9 +1,10 @@
 ﻿using Ardalis.Specification;
+using Clean.Architecture.Core.Entities;
 using Clean.Architecture.Core.ProjectAggregate;
 
 namespace Clean.Architecture.Core.ProjectAggregate.Specifications;
 
-public class ProjectByIdWithItemsSpec : Specification<Project>, ISingleResultSpecification
+public sealed class ProjectByIdWithItemsSpec : Specification<Project>, ISingleResultSpecification
 {
   public ProjectByIdWithItemsSpec(int projectId)
   {

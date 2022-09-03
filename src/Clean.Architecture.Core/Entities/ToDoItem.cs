@@ -11,12 +11,10 @@ public class ToDoItem : EntityBase
 
   public void MarkComplete()
   {
-    if (!IsDone)
-    {
-      IsDone = true;
+    if (IsDone) return;
+    IsDone = true;
 
-      RegisterDomainEvent(new ToDoItemCompletedEvent(this));
-    }
+    RegisterDomainEvent(new ToDoItemCompletedEvent(this));
   }
 
   public override string ToString()

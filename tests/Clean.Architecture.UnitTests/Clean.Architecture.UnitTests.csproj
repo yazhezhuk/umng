@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <Folder Include="Core\Services\" />
+    <Folder Include="Core\TitleAggregate" />
   </ItemGroup>
 
   <ItemGroup>

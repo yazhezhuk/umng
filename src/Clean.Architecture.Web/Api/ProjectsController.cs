@@ -1,4 +1,5 @@
-﻿using Clean.Architecture.Core.ProjectAggregate;
+﻿using Clean.Architecture.Core.Entities;
+using Clean.Architecture.Core.ProjectAggregate;
 using Clean.Architecture.Core.ProjectAggregate.Specifications;
 using Clean.Architecture.SharedKernel.Interfaces;
 using Clean.Architecture.Web.ApiModels;
@@ -51,7 +52,7 @@ public class ProjectsController : BaseApiController
         name: project.Name,
         items: new List<ToDoItemDTO>
         (
-            project.Items.Select(i => ToDoItemDTO.FromToDoItem(i)).ToList()
+            project.Items.Select(ToDoItemDTO.FromToDoItem).ToList()
         )
     );
 
