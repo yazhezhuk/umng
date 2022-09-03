@@ -31,7 +31,7 @@ public class Project : EntityBase, IAggregateRoot
   }
 
   public void UpdateName(string newName)
-  {
+  { 
     Name = Guard.Against.NullOrEmpty(newName, nameof(newName));
   }
 }

@@ -19,35 +19,25 @@ public class DefaultInfrastructureModule : Module
   public DefaultInfrastructureModule(bool isDevelopment, Assembly? callingAssembly = null)
   {
     _isDevelopment = isDevelopment;
-    var coreAssembly =
-      Assembly.GetAssembly(typeof(Project)); // TODO: Replace "Project" with any type from your Core project
+    var coreAssembly = Assembly.GetAssembly(typeof(ICoreAssemblyMarker));
     var infrastructureAssembly = Assembly.GetAssembly(typeof(StartupSetup));
-    if (coreAssembly != null)
-    {
+    
+    if (coreAssembly != null) 
       _assemblies.Add(coreAssembly);
-    }
-
-    if (infrastructureAssembly != null)
-    {
+    
+    if (infrastructureAssembly != null) 
       _assemblies.Add(infrastructureAssembly);
-    }
-
+    
     if (callingAssembly != null)
-    {
       _assemblies.Add(callingAssembly);
-    }
   }
 
   protected override void Load(ContainerBuilder builder)
   {
-    if (_isDevelopment)
-    {
+    if (_isDevelopment) 
       RegisterDevelopmentOnlyDependencies(builder);
-    }
     else
-    {
-      RegisterProductionOnlyDependencies(builder);
-    }
+     RegisterProductionOnlyDependencies(builder);
 
     RegisterCommonDependencies(builder);
   }
